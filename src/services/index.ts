@@ -8,7 +8,6 @@ export const services = {
     preparations,
 
     storage: {
-        imagePath:
-        "https://jvakeubiwbyrimwiqsiu.supabase.co/storage/v1/object/public/ingredients",
+        imagePath: process.env.EXPO_PUBLIC_SUPABASE_IMAGES_URL,
     },
 }

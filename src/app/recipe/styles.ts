@@ -2,7 +2,9 @@ import { StyleSheet } from "react-native"
 import { theme } from "@/theme"
 
 export const styles = StyleSheet.create({
-  container: { flex: 1 },
+  container: { 
+    flex: 1 
+  },
   image: {
     width: "100%",
     height: 192,
@@ -34,5 +36,13 @@ export const styles = StyleSheet.create({
     fontSize: theme.fonts.size.body.sm,
     fontFamily: theme.fonts.family.regular,
     color: theme.colors.gray_400,
+  },
+  backButtom: {
+    position: "absolute",
+    top: 32,
+    left: 16,
+    backgroundColor: theme.colors.white,
+    padding: 8,
+    borderRadius: 50,
   },
 })

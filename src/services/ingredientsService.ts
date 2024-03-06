@@ -12,17 +12,31 @@ export async function findByIds(ids: string[]) {
 }
 
 export async function findByRecipeId(id: string) {
-  const { data } = await supabase
+  const recipeIngredientsQuery = await supabase
     .from("recipes_ingredients")
-    .select("ingredients (id, name, image)")
-    .eq("recipe_id", id)
-    .returns<{ ingredients: IngredientResponse }[]>()
+    .select("ingredient_id")
+    .eq("recipe_id", id);
 
-  return data ? data.map((item) => item.ingredients) : []
+  const recipeIngredients = recipeIngredientsQuery.data;
+
+  if (!recipeIngredients || recipeIngredients.length === 0) {
+    return [];
+  }
+
+  const ingredientIds = recipeIngredients.map((item) => item.ingredient_id);
+
+  const ingredientsQuery = await supabase
+    .from("ingredients")
+    .select("id, name, image")
+    .in("id", ingredientIds);
+
+  const ingredients = ingredientsQuery.data;
+
+  return ingredients ?? [];
 }
 
 export async function findAll() {
- const { data } = await supabase.from("ingredients").select().order("name").returns<IngredientResponse[]>();
+  const { data } = await supabase.from("ingredients").select().order("name").returns<IngredientResponse[]>();
 
   return data ?? [];
 }

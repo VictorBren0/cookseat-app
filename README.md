@@ -61,7 +61,7 @@ Antes de começar, você precisa ter [Git](https://git-scm.com) e [Node](https:/
 $ git clone https://github.com/VictorBren0/cookseat-app
 
 # Accesso
-$ cd cook-app
+$ cd cookseat-app
 
 # Instalando dependencias
 $ npm install
